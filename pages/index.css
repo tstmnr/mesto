@@ -1,0 +1,36 @@
+@import url("../vendor/normalize.css");
+
+.page {
+  max-width: 1280px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+header {
+  max-width: 880px;
+  width: 100%;
+}
+
+.header::after {
+  content: "";
+  display: block;
+  height: 1px;
+  background: #545454;
+  opacity: .7;
+}
+
+.page__header {
+  margin: 45px auto 0;
+}
+
+.logo {
+  width: 142px;
+  height: 33px;
+  display: block;
+}
+
+.header__logo {
+  margin-bottom: 41px;
+}
