@@ -1,0 +1,7 @@
+.profile__about {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 7px;
+  grid-area: "about";
+}

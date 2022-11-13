@@ -1,0 +1,21 @@
+.profile {
+  font-family: 'Inter';
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 767px) {
+  .profile {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  .places__items {
+    display: flex;
+    flex-direction: column;
+  }
+}
