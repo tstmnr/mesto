@@ -1,7 +1,7 @@
 const editButton = document.querySelector('.profile__edit-button');
 const popupElement = document.querySelector('.popup');
 const closeButtonPopup = popupElement.querySelector('.popup__close');
-const saveButton = popupElement.querySelector('.popup__save');
+const formElement = popupElement.querySelector('.form');
 
 let inputName = popupElement.querySelector('.popup__input_form_name');
 let inputAbout = popupElement.querySelector('.popup__input_form_about');
@@ -29,4 +29,4 @@ const formSubmit = function(event) {
 
 editButton.addEventListener('click', openPopup);
 closeButtonPopup.addEventListener('click', closePopup)
-saveButton.addEventListener('click', formSubmit)
+formElement.addEventListener('submit', formSubmit)
