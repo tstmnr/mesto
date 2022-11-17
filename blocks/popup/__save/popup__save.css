@@ -8,7 +8,6 @@
   cursor: pointer;
   padding: 0px;
   border: none;
-  justify-content: space-between;
   transition: opacity .3s ease;
   justify-content: center;
 }
