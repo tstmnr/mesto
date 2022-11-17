@@ -2,5 +2,12 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
-  grid-area: "name";
+  margin: 0;
+}
+@media screen and (max-width: 567px) {
+  .profile__name {
+    font-size: 27px;
+    line-height: 33px;
+    margin: 26px 0 0;
+  }
 }

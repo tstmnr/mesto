@@ -1,10 +1,10 @@
 .profile__info {
-  display: grid;
-  grid-template-areas:
-    "name" "edit-button"
-    "about" "about";
-  grid-template-columns: 1fr auto;
-  color: #fff;
   margin-left: 30px;
+  max-width: 400px;
 }
-
+@media screen and (max-width: 567px) {
+  .profile__info {
+    margin-left: 0px;
+    text-align: center;
+  }
+}

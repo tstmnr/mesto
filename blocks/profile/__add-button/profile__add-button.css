@@ -6,26 +6,32 @@
   background-color: #000;
   position: relative;
   cursor: pointer;
-  opacity: 1;
   transition: opacity .3s ease;
+  box-sizing: border-box;
+  padding: 0;
 }
-
 .profile__add-button:after {
   content: "";
   background-image: url("../../../images/addButton.svg");
+  background-size: cover;
   position: absolute;
   width: 22px;
   height: 22px;
   transform: translate(-50%, -50%);
 }
-
 .profile__add-button:hover {
   opacity: .6;
 }
-
 @media screen and (max-width: 767px) {
   .profile__add-button {
-    margin-top: 36px;
+    margin-top: 33px;
+    max-width: 400px;
     width: 100%;
+  }
+}
+@media screen and (max-width: 567px) {
+  .profile__add-button:after {
+    width: 16px;
+    height: 16px;
   }
 }

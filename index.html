@@ -8,72 +8,98 @@
   <link rel="stylesheet" href="./pages/index.css">
 </head>
 <body class="page">
-  <header class="header page__header">
-    <img class="logo header__logo" src="./images/logo.svg" alt="Логотип интерактивной страницы Место">
-  </header>
+  <div class="container">
+    <!--HEADER-->
+    <header class="header container__header">
+      <img class="logo header__logo" src="./images/logo.svg" alt="Логотип интерактивной страницы Место">
+    </header>
+    <!--MAIN-->
+    <main class="content container__content">
+      <section class="profile">
+        <div class="profile__wrapper">
+          <div class="profile__avatar">
+          </div>
+          <div class="profile__info">
+            <div class="profile__container-title">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <div class="profile__wrapper-button">
+                <button class="profile__edit-button"></button>
+              </div>
+            </div>
+            <p class="profile__about">Исследователь океана</p>
+          </div>
+        </div>
 
-  <main class="content page__content">
-    <section class="profile">
-      <div class="profile__wrapper">
-        <div class="profile__avatar">
-        </div>
-        <div class="profile__info">
-          <div class="profile__name">Жак-Ив Кусто</div>
-          <button class="profile__edit-button"></button>
-          <div class="profile__about">Исследователь океана</div>
-        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <!--PLACES-->
+      <section class="places content__places">
+        <ul class="places__items">
+          <li class="card">
+            <img class="card__image" src="./images/Karachaevsk.png" alt="Картинка города Карачаевска">
+            <div class="card__info">
+              <h2 class="card__title">Карачаевск</h2>
+              <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/Elbrus.png" alt="Картинка горы Эльбрус">
+            <div class="card__info">
+              <h2 class="card__title">Гора Эльбрус</h2>
+              <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/Dombai.png" alt="Картинка горы Домбай">
+            <div class="card__info">
+              <h2 class="card__title">Домбай</h2>
+              <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/Mashuk.png" alt="Картинка горы Машук">
+            <div class="card__info">
+              <h2 class="card__title">Гора Машук</h2>
+              <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/Baikal.png" alt="Картинка озера Байкал">
+            <div class="card__info">
+              <h2 class="card__title">Байкал</h2>
+              <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
+            </div>
+          </li>
+          <li class="card">
+            <img class="card__image" src="./images/Buryatiya.png" alt="Картинка степей Бурятии">
+            <div class="card__info">
+              <h2 class="card__title">Бурятия</h2>
+              <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <!--FOOTER-->
+    <footer class="footer container__footer">
+      <div class="footer__copyright">© 2020 Mesto Russia</div>
+    </footer>
+    <!--POPUP-->
+    <section class="popup">
+      <div class="popup__container">
+        <button class="popup__close"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__input popup__input_form_name" type="text" value="">
+        <div class="popup__line"></div>
+        <input class="popup__input popup__input_form_about" type="text" value="">
+        <div class="popup__line"></div>
+        <button class="popup__save">
+          <p class="popup__save-text">Сохранить</p>
+        </button>
       </div>
-      <button class="profile__add-button"></button>
     </section>
-    <section class="places page__places">
-      <div class="places__items">
-        <div class="card">
-          <img class="card__image" src="./images/Karachaevsk.png" alt="фывфыв">
-          <div class="card__info">
-            <h2 class="card__title">Карачаевск</h2>
-            <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/Elbrus.png" alt="фывфыв">
-          <div class="card__info">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/Dombai.png" alt="фывфыв">
-          <div class="card__info">
-            <h2 class="card__title">Домбай</h2>
-            <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/Elbrus_rock.png" alt="фывфыв">
-          <div class="card__info">
-            <h2 class="card__title">Гора Эльбрус</h2>
-            <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/Dombai_rock.png" alt="фывфыв">
-          <div class="card__info">
-            <h2 class="card__title">Домбай</h2>
-            <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
-          </div>
-        </div>
-        <div class="card">
-          <img class="card__image" src="./images/Karachaevo-Cherkessia.png" alt="фывфыв">
-          <div class="card__info">
-            <h2 class="card__title">Карачаево-Черкессия</h2>
-            <img class="card__favourites" src="./images/favorites.svg" alt="Добавить в избранное">
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="footer page__footer">
-    <div class="footer__copyright">© 2020 Mesto Russia</div>
-  </footer>
+  </div>
+  <script src="./script.js">
+  </script>
 </body>
 </html>

@@ -2,6 +2,12 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  margin-top: 7px;
-  grid-area: "about";
+  margin: 9px 0 0;
+}
+@media screen and (max-width: 567px) {
+  .profile__about {
+    font-size: 14px;
+    line-height: 17px;
+    margin: 7px 0 0;
+  }
 }

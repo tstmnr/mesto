@@ -1,6 +1,6 @@
-header {
-  max-width: 880px;
+.header {
   width: 100%;
+  font-family: 'Inter';
 }
 
 .header::after {
