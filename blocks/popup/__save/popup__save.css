@@ -9,7 +9,10 @@
   padding: 0px;
   border: none;
   transition: opacity .3s ease;
-  justify-content: center;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 22px;
+  letter-spacing: 1.1px;
 }
 
 .popup__save:hover {
@@ -20,5 +23,8 @@
   .popup__save {
     margin-top: 15px;
     min-height: 46px;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: .6px;
   }
 }
