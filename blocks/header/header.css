@@ -1,6 +1,6 @@
 .header {
   width: 100%;
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 .header::after {

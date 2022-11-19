@@ -7,6 +7,9 @@
   cursor: pointer;
   transition: opacity .3s ease;
   padding: 0;
+  margin-left: 18px;
+  margin-bottom: 8px;
+  align-self: flex-end;
 }
 .profile__edit-button:after {
   content: "";
@@ -24,6 +27,10 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
+    position: absolute;
+    margin-bottom: 7px;
+    bottom: 0;
+    right: -28px;
   }
   .profile__edit-button:after {
     width: 7.5px;

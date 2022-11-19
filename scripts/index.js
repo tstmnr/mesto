@@ -9,22 +9,21 @@ let inputAbout = popupElement.querySelector('.popup__input_form_about');
 const userName = document.querySelector('.profile__name');
 const aboutUser = document.querySelector('.profile__about');
 
-const openPopup = function(event) {
-  event.preventDefault();
-  popupElement.classList.add('popup__mode_active');
+const openPopup = function() {
+  popupElement.classList.add('popup_opened');
   inputName.value = userName.textContent; //Получаем данные текущего имени и отображаем в поле для редактирования
   inputAbout.value = aboutUser.textContent; //Получаем данные текущего опиисания и отображаем в поле для редактирования
 }
 
 const closePopup = function() {
-  popupElement.classList.remove('popup__mode_active');
+  popupElement.classList.remove('popup_opened');
 }
 
 const formSubmit = function(event) {
   event.preventDefault();
   userName.textContent = inputName.value; //Присваиваем новое имя и сохраняем его
   aboutUser.textContent = inputAbout.value; //Присваиваем новое описание и сохраняем его
-  popupElement.classList.remove('popup__mode_active');
+  closePopup();
 }
 
 editButton.addEventListener('click', openPopup);

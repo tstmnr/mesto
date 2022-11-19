@@ -22,15 +22,12 @@
           <div class="profile__info">
             <div class="profile__container-title">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <div class="profile__wrapper-button">
-                <button class="profile__edit-button"></button>
-              </div>
+              <button class="profile__edit-button" type="button" aria-label="Редактировать"></button>
             </div>
             <p class="profile__about">Исследователь океана</p>
           </div>
         </div>
-
-        <button class="profile__add-button"></button>
+        <button class="profile__add-button" type="button" aria-label="Добавить"></button>
       </section>
       <!--PLACES-->
       <section class="places content__places">
@@ -39,42 +36,42 @@
             <img class="card__image" src="./images/Karachaevsk.png" alt="Ззаброшенная церковь в горах Карачаевска">
             <div class="card__info">
               <h2 class="card__title">Карачаевск</h2>
-              <img class="card__favourites" src="./images/favorites.svg" alt="Картинка лайк">
+              <button class="card__favourites" type="button" aria-label="Добавить в избранное"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="./images/Elbrus.png" alt="Картинка горы Эльбрус">
             <div class="card__info">
               <h2 class="card__title">Гора Эльбрус</h2>
-              <img class="card__favourites" src="./images/favorites.svg" alt="Картинка лайк">
+              <button class="card__favourites" type="button" aria-label="Добавить в избранное"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="./images/Dombai.png" alt="Картинка горы Домбай">
             <div class="card__info">
               <h2 class="card__title">Домбай</h2>
-              <img class="card__favourites" src="./images/favorites.svg" alt="Картинка лайк">
+              <button class="card__favourites" type="button" aria-label="Добавить в избранное"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="./images/Mashuk.png" alt="Картинка горы Машук">
             <div class="card__info">
               <h2 class="card__title">Гора Машук</h2>
-              <img class="card__favourites" src="./images/favorites.svg" alt="Картинка лайк">
+              <button class="card__favourites" type="button" aria-label="Добавить в избранное"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="./images/Baikal.png" alt="Картинка озера Байкал">
             <div class="card__info">
               <h2 class="card__title">Байкал</h2>
-              <img class="card__favourites" src="./images/favorites.svg" alt="Картинка лайк">
+              <button class="card__favourites" type="button" aria-label="Добавить в избранное"></button>
             </div>
           </li>
           <li class="card">
             <img class="card__image" src="./images/Buryatiya.png" alt="Картинка степей Бурятии">
             <div class="card__info">
               <h2 class="card__title">Бурятия</h2>
-              <img class="card__favourites" src="./images/favorites.svg" alt="Картинка лайк">
+              <button class="card__favourites" type="button" aria-label="Добавить в избранное"></button>
             </div>
           </li>
         </ul>
@@ -82,25 +79,23 @@
     </main>
     <!--FOOTER-->
     <footer class="footer container__footer">
-      <div class="footer__copyright">© 2020 Mesto Russia</div>
+      <h3 class="footer__copyright">© 2020 Mesto Russia</h3>
     </footer>
     <!--POPUP-->
     <section class="popup">
-      <div class="popup__container">
-        <button class="popup__close"></button>
+      <div class="popup__container" name="info">
+        <button class="popup__close" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <form action="submit" class="form">
-          <input class="popup__input popup__input_form_name" type="text" value="">
-          <div class="popup__line"></div>
-          <input class="popup__input popup__input_form_about" type="text" value="">
-          <div class="popup__line"></div>
-          <button class="popup__save" type="submit">Сохранить</button>
+          <input class="popup__input popup__input_form_name" type="text" value="" name="name">
+          <input class="popup__input popup__input_form_about" type="text" value="" name="about">
+          <button class="popup__save" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
 
       </div>
     </section>
   </div>
-  <script src="./script.js">
+  <script src="./scripts/index.js">
   </script>
 </body>
 </html>
