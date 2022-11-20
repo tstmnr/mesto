@@ -2,12 +2,23 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 22px;
-  margin: 9px 0 0;
+  margin: 0;
+  max-width: 320px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
+
 @media screen and (max-width: 567px) {
   .profile__about {
+    text-align: center;
     font-size: 14px;
     line-height: 17px;
-    margin: 7px 0 0;
+  }
+}
+
+@media screen and (max-width: 367px) {
+  .profile__about {
+    max-width: 190px;
   }
 }
