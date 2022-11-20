@@ -32,7 +32,7 @@
   }
 }
 
-@media screen and (max-width: 367px) {
+@media screen and (max-width: 567px) {
   .profile__add-button:after {
     width: 16px;
     height: 16px;
