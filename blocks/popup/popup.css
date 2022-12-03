@@ -8,6 +8,6 @@
   height: 100%;
   visibility: hidden;
   opacity: 0;
-  transition: visibility .4s, opacity .4s ease;
-  transition:  ease;
+  transition: visibility .7s, opacity .7s ease;
+  display: flex;
 }

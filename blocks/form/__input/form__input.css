@@ -1,4 +1,4 @@
-.popup__input {
+.form__input {
   width: 100%;
   border: none;
   outline: none;
@@ -11,6 +11,6 @@
   margin-bottom: 21px;
 }
 
-.popup__input:last-of-type {
+.form__input:last-of-type {
   margin-bottom: 30px;
 }

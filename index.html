@@ -39,26 +39,26 @@
       <h3 class="footer__copyright">© 2020 Mesto Russia</h3>
     </footer>
     <!--POPUP-EDIT-BUTTON-->
-    <section class="popup" id="popup-add">
+    <section class="popup popup__edit-button">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form" action="submit" name="info">
-          <input class="popup__input" type="text" value="" name="name" placeholder="Имя">
-          <input class="popup__input" type="text" value="" name="about" placeholder="Коротко о себе">
-          <button class="popup__save" type="submit" aria-label="Сохранить">Сохранить</button>
+        <form class="form" name="user-info">
+          <input class="form__input" type="text" value="" name="name" placeholder="Имя">
+          <input class="form__input" type="text" value="" name="info" placeholder="Коротко о себе">
+          <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </section>
     <!--POPUP-ADD-BUTTON-->
-    <section class="popup" id="popup-add">
+    <section class="popup popup__add-button">
       <div class="popup__container">
         <button class="popup__close" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="form" action="submit" name="new-card">
-          <input class="popup__input" type="text" value="" name="place" placeholder="Название">
-          <input class="popup__input" type="text" value="" name="link" placeholder="Ссылка на картинку">
-          <button class="popup__save" type="submit" aria-label="Сохранить">Сохранить</button>
+        <form class="form" name="new-card">
+          <input class="form__input" type="text" value="" name="name" placeholder="Название">
+          <input class="form__input" type="text" value="" name="info" placeholder="Ссылка на картинку">
+          <button class="form__save" type="submit" aria-label="Создать">Создать</button>
         </form>
       </div>
     </section>
