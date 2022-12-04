@@ -1,14 +1,14 @@
 /*-----ОБЪЯВЛЕНИЕ ПЕРЕМЕННЫХ-----*/
 /*-----Переменные для работы с кнопкой добавить место-----*/
 const addButton = document.querySelector('.profile__add-button'),
-      popupElementAddButton = document.querySelector('.popup__add'),
+      popupElementAddButton = document.querySelector('.popup-add'),
       formElementAddButton = popupElementAddButton.querySelector('[name="new-card"]'),
       inputPlaceName = formElementAddButton.querySelector('[name="place-name"]'),
       inputPlaceLink = formElementAddButton.querySelector('[name="place-link"]'),
       buttonClosePopupAddButton = document.querySelector('.popup__close_type_card');
 /*-----Переменные для работы с кнопкой редактировать профиль-----*/
 const editButton = document.querySelector('.profile__edit-button'),
-      popupElementEditButton = document.querySelector('.popup__edit'),
+      popupElementEditButton = document.querySelector('.popup-edit'),
       formElementEditButton = popupElementEditButton.querySelector('[name="user-info"]'),
       inputUserName = popupElementEditButton.querySelector('[name="name"]'),
       inputUserAbout = popupElementEditButton.querySelector('[name="about"]'),
