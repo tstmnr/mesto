@@ -41,11 +41,11 @@
     <!--POPUP-EDIT-BUTTON-->
     <section class="popup popup__edit-button">
       <div class="popup__container">
-        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__close_type_profile" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form" name="user-info">
-          <input class="form__input" type="text" value="" name="name" placeholder="Имя">
-          <input class="form__input" type="text" value="" name="info" placeholder="Коротко о себе">
+        <form class="form popup__form_type_profile" name="user-info">
+          <input class="form__input form__input_type_user-name" type="text" value="" name="name" placeholder="Имя">
+          <input class="form__input form__input_type_user-about" type="text" value="" name="about" placeholder="Коротко о себе">
           <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
@@ -53,13 +53,22 @@
     <!--POPUP-ADD-BUTTON-->
     <section class="popup popup__add-button">
       <div class="popup__container">
-        <button class="popup__close" type="button" aria-label="Закрыть"></button>
+        <button class="popup__close popup__close_type_card" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__title">Новое место</h2>
-        <form class="form" name="new-card">
-          <input class="form__input" type="text" value="" name="name" placeholder="Название">
-          <input class="form__input" type="text" value="" name="info" placeholder="Ссылка на картинку">
+        <form class="form popup__form_type_card" name="new-card">
+          <input class="form__input form__input_type_place-name" type="text" value="" name="place-name" placeholder="Название">
+          <input class="form__input form__input_type_place-link" type="text" value="" name="place-link" placeholder="Ссылка на картинку">
           <button class="form__save" type="submit" aria-label="Создать">Создать</button>
         </form>
+      </div>
+    </section>
+    <section class="popup-image">
+      <div class="popup-image__container">
+        <figure class="popup-image__figure">
+          <img class="popup-image__photo" alt="">
+          <figcaption class="popup-image__figcaption"></figcaption>
+        </figure>
+        <button class="popup-image__close-button" aria-label="Закрыть"></button>
       </div>
     </section>
   </div>

@@ -1,5 +1,26 @@
+/*ПЕРЕМЕННЫЕ*/
+/*const editButton = document.querySelector('.profile__edit-button');
+const popupElementEditButton = document.querySelector('.popup__edit-button');
+*/
+const addButton = document.querySelector('.profile__add-button');
+const popupElementAddButton = document.querySelector('.popup__add-button');
+const formElementAddButton = popupElementAddButton.querySelector('.popup__form_type_card');
+const inputPlaceName = formElementAddButton.querySelector('.form__input_type_place-name');
+const inputPlaceLink = formElementAddButton.querySelector('.form__input_type_place-link');
+const buttonElementCloseAddButton = popupElementAddButton.querySelector('.popup__close_type_card');
+
+const editButton = document.querySelector('.profile__edit-button');
+const popupElementEditButton = document.querySelector('.popup__edit-button');
+const formElementEditButton = popupElementEditButton.querySelector('.popup__form_type_profile');
+const inputUserName = popupElementEditButton.querySelector('.form__input_type_user-name');
+const inputUserAbout = popupElementEditButton.querySelector('.form__input_type_user-about');
+const buttonElementCloseEditButton = popupElementEditButton.querySelector('.popup__close_type_profile');
+const userName = document.querySelector('.profile__name');
+const userAbout = document.querySelector('.profile__about');
+
 /*
-ДОБАВЛЕНИЕ КАРТОЧЕК
+const userName= document.querySelector('.profile__name');
+const userAbout = document.querySelector('.profile__about');
 */
 const initialCards = [
   {
@@ -30,7 +51,6 @@ const initialCards = [
 const listCard = document.querySelector('.places__items');
 const cardTemplate = document.querySelector('#template-card').content.querySelector('.card');
 
-
 const renderCard = function (name, link) {
   listCard.prepend(addCard(name, link));
 }
@@ -58,94 +78,58 @@ const addCard = function (name, link) {
 
 initialCards.forEach((card) => {
   renderCard(card.name, card.link)
-})
+});
 
-/*
-ПОПАП
-
-
-const buttonAdd = document.querySelector('.profile__add-button');
-const buttonClose = document.querySelectorAll('.popup__close');
-const popupElementAddCard = document.querySelector('.popup__add-button');
-
-
-const openPopup = function (e) {
-  e.preventDefault();
-  popupElementAddCard.classList.add('popup_opened');
-  console.log(popupElementAddCard.classList);
-  if (e.target == buttonAdd) {
-    const formElement = popupElementAddCard.querySelector('.form');
-    const formInputPlaceName = formElement.querySelector('[name="place"]');
-    const formInputPlaceLink = formElement.querySelector('[name="link"]');
-
-    formElement.addEventListener('submit', (e) => {
-      e.preventDefault();
-      renderCard(formInputPlaceName.value, formInputPlaceLink.value);
-      closePopup();
-    });
-  }
-
-};*/
-
-
-const editButton = document.querySelector('.profile__edit-button');
-const popupElementEditButton = document.querySelector('.popup__edit-button');
-
-const addButton = document.querySelector('.profile__add-button');
-const popupElementAddButton = document.querySelector('.popup__add-button');
-
-const dataName= document.querySelector('.profile__name');
-const dataAbout = document.querySelector('.profile__about');
-
-
-const openPopup = function(popupElement) {
+function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
-  const closeButtonPopup = popupElement.querySelector('.popup__close');
-  const formElement = popupElement.querySelector('.form');
-  const inputFieldOne = formElement.querySelector('[name="name"]');
-  const inputFieldTwo = formElement.querySelector('[name="info"]');
 
   if (popupElement.classList.contains('popup__edit-button')) {
-    inputFieldOne.value = dataName.textContent;
-    inputFieldTwo.value = dataAbout.textContent;
+    inputUserName.value = userName.textContent;
+    inputUserAbout.value = userAbout.textContent;
   }
-
-  formElement.addEventListener('submit', (e) => {
-    formSubmit(popupElement, inputFieldOne.value, inputFieldTwo.value, e);
-  });
-
-  closeButtonPopup.addEventListener('click', () => {
-    closePopup(popupElement);
-  });
 }
 
-const closePopup = function(popupElement) {
+function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
 }
 
-const formSubmit = function(popupElement, inputFieldOne, inputFieldTwo, e) {
+function submitFormAddCard(e, popupElement) {
   e.preventDefault();
 
-  if (popupElement.classList.contains('popup__edit-button')) {
-    dataName.textContent = inputFieldOne;
-    dataAbout.textContent = inputFieldTwo;
+  if (popupElement.classList.contains('popup__add-button')) {
+    renderCard(inputPlaceName.value, inputPlaceLink.value);
+    inputPlaceName.value = '';
+    inputPlaceLink.value = '';
   }
 
-  if (popupElement.classList.contains('popup__add-button')) {
-    renderCard(inputFieldOne, inputFieldTwo);
-    inputFieldOne = '';
-    inputFieldTwo = '';
+  if (popupElement.classList.contains('popup__edit-button')) {
+    userName.textContent = inputUserName.value;
+    userAbout.textContent = inputUserAbout.value;
   }
   closePopup(popupElement);
 }
-
-editButton.addEventListener('click', () => {
-  openPopup(popupElementEditButton);
-});
 
 addButton.addEventListener('click', () => {
   openPopup(popupElementAddButton);
 });
 
+buttonElementCloseAddButton.addEventListener('click', () => {
+  closePopup(popupElementAddButton);
+});
 
+formElementAddButton.addEventListener('submit', (e) => {
+  submitFormAddCard(e, popupElementAddButton);
+});
+
+editButton.addEventListener('click', () => {
+  openPopup(popupElementEditButton);
+});
+
+buttonElementCloseEditButton.addEventListener('click', () => {
+  closePopup(popupElementEditButton);
+});
+
+formElementEditButton.addEventListener('submit', (e) => {
+  submitFormAddCard(e, popupElementEditButton);
+});
 
