@@ -1,6 +1,6 @@
 .form__save {
-  width: 100%;
   min-height: 50px;
+  width: 100%;
   background: #000000;
   border-radius: 2px;
   color: #fff;
@@ -18,7 +18,7 @@
   opacity: .8;
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-width: 430px) {
   .form__save {
     margin-top: 15px;
     min-height: 46px;

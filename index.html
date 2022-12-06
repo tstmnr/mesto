@@ -41,11 +41,13 @@
     <!--POPUP-EDIT-BUTTON-->
     <section class="popup popup-edit">
       <div class="popup__container">
-        <button class="popup__close popup__close_type_profile" type="button" aria-label="Закрыть"></button>
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="form" name="user-info">
-          <input class="form__input" type="text" value="" name="name" placeholder="Имя">
-          <input class="form__input" type="text" value="" name="about" placeholder="Коротко о себе">
+        <form class="form popup__form" name="user-info">
+          <button class="popup__close popup__close_type_profile" type="button" aria-label="Закрыть"></button>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="form__fieldset">
+            <input class="form__input" type="text" value="" name="name" placeholder="Имя">
+            <input class="form__input" type="text" value="" name="about" placeholder="Коротко о себе">
+          </fieldset>
           <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
@@ -53,22 +55,24 @@
     <!--POPUP-ADD-BUTTON-->
     <section class="popup popup-add">
       <div class="popup__container">
-        <button class="popup__close popup__close_type_card" type="button" aria-label="Закрыть"></button>
-        <h2 class="popup__title">Новое место</h2>
-        <form class="form" name="new-card">
-          <input class="form__input" type="text" value="" name="place-name" placeholder="Название">
-          <input class="form__input" type="text" value="" name="place-link" placeholder="Ссылка на картинку">
+        <form class="form popup__form" name="new-card">
+          <button class="popup__close popup__close_type_card" type="button" aria-label="Закрыть"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="form__fieldset">
+            <input class="form__input" type="text" value="" name="place-name" placeholder="Название">
+            <input class="form__input" type="text" value="" name="place-link" placeholder="Ссылка на картинку">
+          </fieldset>
           <button class="form__save" type="submit" aria-label="Создать">Создать</button>
         </form>
       </div>
-    </section>-
+    </section>
     <!--POPUP-IMAGE-AND-DESCRIPTION-->
-    <section class="popup-image">
-      <div class="popup-image__container">
+    <section class="popup popup-image">
+      <div class="popup__container">
         <figure class="popup-image__figure">
+          <button class="popup__close popup__close_type_image" type="button" aria-label="Закрыть"></button>
           <img class="popup-image__photo" alt="">
           <figcaption class="popup-image__figcaption"></figcaption>
-          <button class="popup-image__close-button" type="button" aria-label="Закрыть"></button>
         </figure>
       </div>
     </section>
@@ -84,6 +88,8 @@
       <button class="card__delete" type="button" aria-label="Удалить место"></button>
     </li>
   </template>
+  <script src="./scripts/card.js">
+  </script>
   <script src="./scripts/index.js">
   </script>
 </body>
