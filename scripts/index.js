@@ -46,7 +46,7 @@ initialCards.forEach((card) => {
 
 /*-----Открытие попапа изображения карточки-----*/
 function openPopupImage(cardElement) {
-  imagePopup.classList.add('popup_opened');
+  openPopup(imagePopup);
   cardImage.src = cardElement.querySelector('.card__image').src;
   cardImage.alt = cardElement.querySelector('.card__title').textContent;
   cardCaption.textContent = cardElement.querySelector('.card__title').textContent;
@@ -118,9 +118,6 @@ const buttonElementAddCard = document.querySelector('.profile__add-button'),
 /*-----Функция открытие попапа добавления новых карточек-----*/
 function openPopupAddCard(popupElement) {
   openPopup(popupElement);
-
-  fieldInputUserName.value = userName.textContent;
-  fieldInputAbout.value = userAbout.textContent;
 }
 
 /*-----Функция отправки формы добавления новых карточек-----*/
