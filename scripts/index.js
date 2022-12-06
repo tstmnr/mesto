@@ -7,7 +7,7 @@ const listCard = document.querySelector('.places__items'),
       cardCaption = imagePopup.querySelector('.popup-image__figcaption'),
       buttonCloseImagePopup = imagePopup.querySelector('.popup__close_type_image');
 
-      /*-----Создание нового места-----*/
+/*-----Создание нового места-----*/
 const addCard = function (name, link) {
   const cardElement = cardTemplate.cloneNode(true),
         cardTitle = cardElement.querySelector('.card__title'),
