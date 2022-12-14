@@ -56,14 +56,35 @@ buttonCloseImagePopup.addEventListener('click', () => {
   closePopup(imagePopup);
 });
 
+function closePopupOnOverlay(e) {
+  if (e.target == e.currentTarget) {
+    closePopup(e.currentTarget);
+  }
+};
+
+function closeByEscape(e) {
+  if (e.key === 'Escape') {
+    closePopup(document.querySelector('.popup_opened'));
+  }
+}
+
 /*-----Функция открытия попапа-----*/
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
+
+  popupElement.addEventListener('click', (e) => {
+    closePopupOnOverlay(e);
+  });
+
+  document.addEventListener('keydown', closeByEscape);
 }
 
 /*-----Функция закрытия попапа-----*/
 function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
+  popupElement.removeEventListener('click', closePopupOnOverlay);
+  document.removeEventListener('keydown', closeByEscape);
+  popupElement.querySelector('.form').reset();
 }
 
 /*ПРОФИЛЬ*/
@@ -141,3 +162,6 @@ buttonCloseAddCard.addEventListener('click', () => {
 formElementAddCard.addEventListener('submit', (e) => {
   submitFormAddCard(e, popupElementAddCard);
 });
+
+
+

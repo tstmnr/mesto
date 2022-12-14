@@ -7,7 +7,6 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
-  margin-bottom: 21px;
 }
 
 .form__input:last-of-type {
@@ -15,5 +14,5 @@
 }
 
 .form__input:focus {
-  box-shadow: rgba(53, 0, 102, 0.3) 0px 6px 7px -2px, rgba(46, 0, 83, 0.3) 0px 3px 7px -3px;
+  box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }

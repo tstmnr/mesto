@@ -1,4 +1,4 @@
-.form__save {
+.form__button {
   min-height: 50px;
   width: 100%;
   background: #000000;
@@ -14,12 +14,12 @@
   letter-spacing: 1.1px;
 }
 
-.form__save:hover {
+.form__button:hover {
   opacity: .8;
 }
 
 @media screen and (max-width: 430px) {
-  .form__save {
+  .form__button {
     margin-top: 15px;
     min-height: 46px;
     font-size: 14px;

@@ -45,10 +45,28 @@
           <button class="popup__close popup__close_type_profile" type="button" aria-label="Закрыть"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="form__fieldset">
-            <input class="form__input" type="text" value="" name="name" placeholder="Имя">
-            <input class="form__input" type="text" value="" name="about" placeholder="Коротко о себе">
+            <input class="form__input"
+              id="name"
+              type="text"
+              minlength="2"
+              maxlength="40"
+              value=""
+              name="name"
+              placeholder="Имя"
+              required>
+            <span id="name-error" class="form__error"></span>
+            <input class="form__input"
+              id="about"
+              type="text"
+              minlength="2"
+              maxlength="200"
+              value=""
+              name="about"
+              placeholder="Коротко о себе"
+              required>
+            <span id="about-error" class="form__error"></span>
           </fieldset>
-          <button class="form__save" type="submit" aria-label="Сохранить">Сохранить</button>
+          <button class="form__button" type="submit" aria-label="Сохранить">Сохранить</button>
         </form>
       </div>
     </section>
@@ -59,10 +77,26 @@
           <button class="popup__close popup__close_type_card" type="button" aria-label="Закрыть"></button>
           <h2 class="popup__title">Новое место</h2>
           <fieldset class="form__fieldset">
-            <input class="form__input" type="text" value="" name="place-name" placeholder="Название">
-            <input class="form__input" type="text" value="" name="place-link" placeholder="Ссылка на картинку">
+            <input class="form__input"
+              id="place-name"
+              type="text"
+              minlength="2"
+              maxlength="30"
+              value=""
+              name="place-name"
+              placeholder="Название"
+              required>
+            <span id="place-name-error" class="form__error"></span>
+            <input class="form__input"
+              id="link"
+              type="url"
+              value=""
+              name="place-link"
+              placeholder="Ссылка на картинку"
+              required>
+            <span id="link-error" class="form__error"></span>
           </fieldset>
-          <button class="form__save" type="submit" aria-label="Создать">Создать</button>
+          <button class="form__button" type="submit" aria-label="Создать">Создать</button>
         </form>
       </div>
     </section>
@@ -91,6 +125,8 @@
   <script src="./scripts/card.js">
   </script>
   <script src="./scripts/index.js">
+  </script>
+  <script src="./scripts/validate.js">
   </script>
 </body>
 </html>
