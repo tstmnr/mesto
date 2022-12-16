@@ -1,51 +1,81 @@
-const checkInputValidity = (form, input, config) => {
-  const error = form.querySelector(`#${input.id}-error`);
+const showInputError = (formElement, inputElement, errorMessage, config) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
-  if (!input.validity.valid) {
-    error.textContent = input.validationMessage;
-    error.classList.add(config.errorClass);
-    input.classList.add(config.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(config.errorClass);
+  inputElement.classList.add(config.inputErrorClass);
+};
+
+const hideInputError = (formElement, inputElement, config) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+
+  errorElement.textContent = '';
+  errorElement.classList.remove(config.errorClass);
+  inputElement.classList.remove(config.inputErrorClass);
+};
+
+const checkInputValidity = (formElement, inputElement, config) => {
+  if (!inputElement.validity.valid) {
+    showInputError(formElement, inputElement, inputElement.validationMessage, config);
   } else {
-    error.textContent = '';
-    error.classList.remove(config.errorClass);
-    input.classList.remove(config.inputErrorClass);
+    hideInputError(formElement, inputElement, config);
   }
-}
+};
 
-const checkValidForm = (inputList, button, config) => {
-  const isFormValid = inputList.every(input =>  {
-    return input.validity.valid;
+const setEventListeners = (formElement, config) => {
+  const inputList = [...formElement.querySelectorAll(config.inputSelector)];
+  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+
+  toggleButtonState(inputList, buttonElement, config);
+
+
+
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement, config);
+      toggleButtonState(inputList, buttonElement, config);
+    });
   });
 
-  if (isFormValid) {
-    button.classList.remove(config.inactiveButtonClass);
-    button.removeAttribute('disabled');
+  formElement.addEventListener('reset', () => {
+    setTimeout(() => {
+      toggleButtonState(inputList, buttonElement, config.inactiveButtonClass);
+    }, 0)
+  })
+};
+
+const enableValidation = (config) => {
+  const formList = [...document.querySelectorAll(config.formSelector)];
+
+  formList.forEach(formElement => {
+    setEventListeners(formElement, config);
+  })
+}
+
+const hasInvalidInput = (inputList) => {
+  return inputList.some((inputElement) => {
+    return !inputElement.validity.valid;
+  })
+};
+
+const toggleButtonState = (inputList, buttonElement, config) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add(config.inactiveButtonClass);
+    buttonElement.setAttribute('disabled', true);
   } else {
-    button.classList.add(config.inactiveButtonClass);
-    button.setAttribute('disabled', true);
+    buttonElement.classList.remove(config.inactiveButtonClass);
+    buttonElement.removeAttribute('disabled');
   }
 }
 
-const enableValidation = (config) => {
-  const forms = [...document.querySelectorAll(config.formSelector)];
+const resetValidation = (formElement, config) => {
+  const inputList = [...formElement.querySelectorAll(config.inputSelector)];
 
-  forms.forEach(form => {
-    const inputList = [...form.querySelectorAll(config.inputSelector)];
-    const button = form.querySelector(config.submitButtonSelector);
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+  inputList.forEach((inputElement) => {
+    inputElement.addEventListener('input', function () {
+      checkInputValidity(formElement, inputElement, config);
     });
-
-    checkValidForm(inputList, button, config);
-
-    inputList.forEach(input => {
-      input.addEventListener('input', (e) => {
-        checkInputValidity(form, input, config);
-        checkValidForm(inputList, button, config);
-      })
-    })
-  })
+  });
 }
 
 enableValidation ({
@@ -56,5 +86,3 @@ enableValidation ({
     inputErrorClass: 'form__input_type_error',
     errorClass: 'form__error_visible'
 });
-
-

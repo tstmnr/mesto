@@ -72,9 +72,7 @@ function closeByEscape(e) {
 function openPopup(popupElement) {
   popupElement.classList.add('popup_opened');
 
-  popupElement.addEventListener('click', (e) => {
-    closePopupOnOverlay(e);
-  });
+  popupElement.addEventListener('click', closePopupOnOverlay);
 
   document.addEventListener('keydown', closeByEscape);
 }
@@ -84,7 +82,6 @@ function closePopup(popupElement) {
   popupElement.classList.remove('popup_opened');
   popupElement.removeEventListener('click', closePopupOnOverlay);
   document.removeEventListener('keydown', closeByEscape);
-  popupElement.querySelector('.form').reset();
 }
 
 /*ПРОФИЛЬ*/
@@ -145,13 +142,13 @@ function openPopupAddCard(popupElement) {
 function submitFormAddCard(e, popupElement) {
   e.preventDefault();
   renderCard(fieldInputPlaceName.value, fieldInputPlaceLink.value);
-  formElementAddCard.reset();
 
   closePopup(popupElement);
 }
 
 /*-----Обработчики событий для добавления места-----*/
 buttonElementAddCard.addEventListener('click', () => {
+  formElementAddCard.reset();
   openPopupAddCard(popupElementAddCard);
 });
 
