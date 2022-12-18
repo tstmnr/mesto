@@ -12,6 +12,7 @@
   font-size: 17px;
   line-height: 22px;
   letter-spacing: 1.1px;
+  margin-top: 13px;
 }
 
 .form__button:hover {
@@ -24,5 +25,6 @@
     font-size: 14px;
     line-height: 17px;
     letter-spacing: .6px;
+    margin-top: 11px;
   }
 }

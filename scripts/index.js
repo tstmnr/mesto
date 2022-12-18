@@ -1,5 +1,5 @@
 /*ДОБАВЛЕНИЕ КАРТОЧЕК*/
-/*-----Переменные для добавления новых-----*/
+/*-----Переменные для добавления новых карточке-----*/
 const listCard = document.querySelector('.places__items'),
       cardTemplate = document.querySelector('#template-card').content.querySelector('.card'),
       imagePopup = document.querySelector('.popup-image'),
@@ -98,6 +98,7 @@ const buttonElementEditProfile = document.querySelector('.profile__edit-button')
 /*-----Функция открытие попапа редактирования профиля-----*/
 function openPopupEditProfile(popupElement) {
   openPopup(popupElement);
+  formElementEditProfile.reset();
 
   fieldInputUserName.value = userName.textContent;
   fieldInputAbout.value = userAbout.textContent;
@@ -159,6 +160,3 @@ buttonCloseAddCard.addEventListener('click', () => {
 formElementAddCard.addEventListener('submit', (e) => {
   submitFormAddCard(e, popupElementAddCard);
 });
-
-
-
