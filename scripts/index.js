@@ -98,6 +98,7 @@ const buttonElementEditProfile = document.querySelector('.profile__edit-button')
 /*-----Функция открытие попапа редактирования профиля-----*/
 function openPopupEditProfile(popupElement) {
   openPopup(popupElement);
+  formElementEditProfile.reset();
 
   fieldInputUserName.value = userName.textContent;
   fieldInputAbout.value = userAbout.textContent;
