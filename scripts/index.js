@@ -7,7 +7,7 @@ const listCard = document.querySelector('.places__items');
 /*-----Создание места и добавление в начало списка-----*/
 const renderCard = function (name, link) {
   const newCard = new Card(name, link);
-  listCard.prepend(newCard._generateCard());
+  listCard.prepend(newCard.generateCard());
 }
 
 /*-----Загрузка списка мест на страницу с "сервера"-----*/
@@ -96,7 +96,7 @@ function submitFormEditProfile(e, popupElement) {
 buttonElementEditProfile.addEventListener('click', () => {
   openPopupEditProfile(popupElementEditProfile);
   const formValidationEditProfile = new FormValidator(formSelectors, formElementEditProfile);
-  formValidationEditProfile._enableValidation();
+  formValidationEditProfile.enableValidation();
 });
 
 buttonCloseProfilePopup.addEventListener('click', () => {
@@ -120,7 +120,7 @@ const buttonElementAddCard = document.querySelector('.profile__add-button'),
 function openPopupAddCard(popupElement) {
   openPopup(popupElement);
   const formValidationAddCard = new FormValidator(formSelectors, formElementAddCard);
-  formValidationAddCard._enableValidation();
+  formValidationAddCard.enableValidation();
 }
 
 /*-----Функция отправки формы добавления новых карточек-----*/

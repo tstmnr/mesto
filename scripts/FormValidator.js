@@ -75,7 +75,7 @@ export class FormValidator {
     });
   };
 
-  _enableValidation() {
+  enableValidation() {
     this._setEventListeners();
   }
 }

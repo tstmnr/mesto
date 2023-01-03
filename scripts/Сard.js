@@ -50,7 +50,7 @@ export class Card {
     return document.querySelector(Card.selectors.cardTemplate).content.querySelector(Card.selectors.cardElement).cloneNode(true);
   }
 
-  _generateCard() {
+  generateCard() {
     this._element = this._getTemplate();
     this._image = this._element.querySelector(Card.selectors.cardLink);
     this._likeButton = this._element.querySelector(Card.selectors.cardLike);
