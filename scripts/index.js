@@ -1,42 +1,13 @@
-/*ДОБАВЛЕНИЕ КАРТОЧЕК*/
-/*-----Переменные для добавления новых карточке-----*/
-const listCard = document.querySelector('.places__items'),
-      cardTemplate = document.querySelector('#template-card').content.querySelector('.card'),
-      imagePopup = document.querySelector('.popup-image'),
-      cardImage = imagePopup.querySelector('.popup-image__photo'),
-      cardCaption = imagePopup.querySelector('.popup-image__figcaption'),
-      buttonCloseImagePopup = imagePopup.querySelector('.popup__close_type_image');
+import { initialCards, formSelectors } from "./data.js"
+import { Card } from './Сard.js';
+import { FormValidator } from "./FormValidator.js";
 
-/*-----Создание нового места-----*/
-const addCard = function (name, link) {
-  const cardElement = cardTemplate.cloneNode(true),
-        cardTitle = cardElement.querySelector('.card__title'),
-        cardLink = cardElement.querySelector('.card__image'),
-        cardLike = cardElement.querySelector('.card__favourites'),
-        cardDelete = cardElement.querySelector('.card__delete');
+const listCard = document.querySelector('.places__items');
 
-  cardTitle.textContent = name;
-  cardLink.src = link;
-  cardLink.alt = `Фото ${name}`;
-
-  cardLink.addEventListener('click', (e) => {
-    openPopupImage(e.target.closest('.card'));
-  })
-
-  cardLike.addEventListener('click', (e) => {
-    e.target.classList.toggle('card__favourities_active');
-  });
-
-  cardDelete.addEventListener('click', (e) => {
-    e.target.closest('.card').remove();
-  });
-
-  return cardElement;
-}
-
-/*-----Добавление нового места в начало списка-----*/
+/*-----Создание места и добавление в начало списка-----*/
 const renderCard = function (name, link) {
-  listCard.prepend(addCard(name, link));
+  const newCard = new Card(name, link);
+  listCard.prepend(newCard._generateCard());
 }
 
 /*-----Загрузка списка мест на страницу с "сервера"-----*/
@@ -44,8 +15,17 @@ initialCards.forEach((card) => {
   renderCard(card.name, card.link)
 });
 
+/*ДОБАВЛЕНИЕ КАРТОЧЕК*/
+/*-----Переменные для добавления новых карточке-----*/
+const imagePopup = document.querySelector('.popup-image');
+
+const cardImage = imagePopup.querySelector('.popup-image__photo'),
+      cardCaption = imagePopup.querySelector('.popup-image__figcaption'),
+      buttonCloseImagePopup = imagePopup.querySelector('.popup__close_type_image');
+
+
 /*-----Открытие попапа изображения карточки-----*/
-function openPopupImage(cardElement) {
+export function openPopupImage(cardElement) {
   openPopup(imagePopup);
   cardImage.src = cardElement.querySelector('.card__image').src;
   cardImage.alt = cardElement.querySelector('.card__title').textContent;
@@ -115,6 +95,8 @@ function submitFormEditProfile(e, popupElement) {
 /*-----Обработчики событий для редактирования профиля-----*/
 buttonElementEditProfile.addEventListener('click', () => {
   openPopupEditProfile(popupElementEditProfile);
+  const formValidationEditProfile = new FormValidator(formSelectors, formElementEditProfile);
+  formValidationEditProfile._enableValidation();
 });
 
 buttonCloseProfilePopup.addEventListener('click', () => {
@@ -137,6 +119,8 @@ const buttonElementAddCard = document.querySelector('.profile__add-button'),
 /*-----Функция открытие попапа добавления новых карточек-----*/
 function openPopupAddCard(popupElement) {
   openPopup(popupElement);
+  const formValidationAddCard = new FormValidator(formSelectors, formElementAddCard);
+  formValidationAddCard._enableValidation();
 }
 
 /*-----Функция отправки формы добавления новых карточек-----*/
