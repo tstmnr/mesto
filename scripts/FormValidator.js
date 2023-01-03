@@ -11,12 +11,6 @@ export class FormValidator {
     this._buttonElement = this._form.querySelector(this._submitButtonSelector);
   }
 
-  _resetValidation = () => {
-    this._inputList.forEach((inputElement) => {
-      this._hideInputError(inputElement);
-    });
-  }
-
   _showInputError = (inputElement, errorMessage) => {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
 
@@ -31,6 +25,12 @@ export class FormValidator {
     errorElement.textContent = '';
     errorElement.classList.remove(this._errorClass);
     inputElement.classList.remove(this._inputErrorClass);
+  };
+
+  _resetValidation = () => {
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
   };
 
   _checkInputValidity = (inputElement) => {
