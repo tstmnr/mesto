@@ -1,8 +1,5 @@
-import { openPopupImage } from "./index.js";
-
 export class Card {
   static selectors = {
-    cardTemplate: '#template-card',
     cardElement:'.card',
     cardTitle: '.card__title',
     cardLink: '.card__image',
@@ -14,31 +11,28 @@ export class Card {
     buttonCloseImagePopup: '.popup__close_type_image',
   }
 
-  constructor(name, link) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
-
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _removeCard() {
     this._element.remove();
   }
 
-  _addLike() {
+  _toggleLike() {
     this._likeButton.classList.toggle('card__favourities_active');
   }
 
-  _openPopupImage() {
-    openPopupImage(this._element);
-  }
-
   _setEventListeners() {
-    this._image.addEventListener('click', (e) => {
-      this._openPopupImage();
-    })
+    this._image.addEventListener('click', () => {
+      this._handleCardClick(this._name, this._link)
+    });
 
     this._likeButton.addEventListener('click', (e) => {
-      this._addLike();
+      this._toggleLike();
     });
 
     this._deleteButton.addEventListener('click', (e) => {
@@ -47,7 +41,7 @@ export class Card {
   }
 
   _getTemplate() {
-    return document.querySelector(Card.selectors.cardTemplate).content.querySelector(Card.selectors.cardElement).cloneNode(true);
+    return document.querySelector(this._templateSelector).content.querySelector(Card.selectors.cardElement).cloneNode(true);
   }
 
   generateCard() {

@@ -1,6 +1,5 @@
 export class FormValidator {
-  constructor(formSelectors, form) {
-    this._formSelector = formSelectors.formSelector;
+  constructor(form, formSelectors) {
     this._inputSelector = formSelectors.inputSelector;
     this._submitButtonSelector = formSelectors.submitButtonSelector;
     this._inactiveButtonClass = formSelectors.inactiveButtonClass;
@@ -27,7 +26,7 @@ export class FormValidator {
     inputElement.classList.remove(this._inputErrorClass);
   };
 
-  _resetValidation = () => {
+  resetValidation = () => {
     this._inputList.forEach((inputElement) => {
       this._hideInputError(inputElement);
     });
@@ -69,7 +68,7 @@ export class FormValidator {
 
     this._form.addEventListener('reset', () => {
       setTimeout(() => {
-        this._resetValidation();
+        resetValidation();
         this._toggleButtonState();
       }, 0);
     });
