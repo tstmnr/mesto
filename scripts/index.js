@@ -36,14 +36,6 @@ initialCards.forEach((card) => {
   renderCard(card.name, card.link)
 });
 
-/*-----Открытие попапа изображения карточки-----*/
-export function openPopupImage(cardElement) {
-
-  cardImage.src = cardElement.querySelector('.card__image').src;
-  cardImage.alt = cardElement.querySelector('.card__title').textContent;
-  cardCaption.textContent = cardElement.querySelector('.card__title').textContent;
-}
-
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап
   const popup = button.closest('.popup');
@@ -90,7 +82,6 @@ const buttonElementEditProfile = document.querySelector('.profile__edit-button')
 /*-----Функция открытие попапа редактирования профиля-----*/
 function openPopupEditProfile(popupElement) {
   openPopup(popupElement);
-
   fieldInputUserName.value = userName.textContent;
   fieldInputAbout.value = userAbout.textContent;
 }
@@ -105,6 +96,7 @@ function submitFormEditProfile(e, popupElement) {
 
 /*-----Обработчики событий для редактирования профиля-----*/
 buttonElementEditProfile.addEventListener('click', () => {
+  formElementEditProfile.reset();
   openPopupEditProfile(popupElementEditProfile);
 });
 
@@ -135,14 +127,13 @@ function submitFormAddCard(e, popupElement) {
 
 /*-----Обработчики событий для добавления места-----*/
 buttonElementAddCard.addEventListener('click', () => {
-  formValidators['new-card'].resetValidation();
+  formElementAddCard.reset();
   openPopupAddCard(popupElementAddCard);
 });
 
 formElementAddCard.addEventListener('submit', (e) => {
   submitFormAddCard(e, popupElementAddCard);
 });
-
 
 const formValidators = {}
 // Включение валидации
