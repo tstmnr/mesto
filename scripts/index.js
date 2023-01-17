@@ -1,18 +1,9 @@
-import { initialCards, formSelectors } from "./data.js"
+import Section from './Section.js'
+import { initialCards, formSelectors, cardListSelector } from "./data.js"
 import { Card } from './Сard.js';
 import { FormValidator } from "./FormValidator.js";
 
-const closeButtons = document.querySelectorAll('.popup__close');
-
-/*ДОБАВЛЕНИЕ КАРТОЧЕК*/
-/*-----Переменные для добавления новых карточке-----*/
-const imagePopup = document.querySelector('.popup-image');
-
-const cardImage = imagePopup.querySelector('.popup-image__photo'),
-      cardCaption = imagePopup.querySelector('.popup-image__figcaption');
-
-const listCard = document.querySelector('.places__items');
-
+/*ДОБАВЛЕНИЕ КАРТОЧЕК с сервера*/
 const createCard = function (name, link) {
   const cardElement = new Card(name, link, '#template-card', handleCardClick).generateCard();
   return cardElement;
@@ -25,16 +16,27 @@ function handleCardClick(name, link) {
   openPopup(imagePopup);
 }
 
+const cardList = new Section({
+  data: initialCards,
+  renderer: (item) => {
+    cardList.addItem(createCard(item.name, item.link));
+  }
+}, cardListSelector);
+
 /*-----Создание места и добавление в начало списка-----*/
 const renderCard = function (name, link) {
-  const newCard = createCard(name, link)
-  listCard.prepend(newCard);
+  cardList.addItem(createCard(name, link));
 }
 
-/*-----Загрузка списка мест на страницу с "сервера"-----*/
-initialCards.forEach((card) => {
-  renderCard(card.name, card.link)
-});
+cardList.renderItems(); //вызов добавления карточек с сервера
+
+
+
+
+
+
+
+const closeButtons = document.querySelectorAll('.popup__close');
 
 closeButtons.forEach((button) => {
   // находим 1 раз ближайший к крестику попап
@@ -42,6 +44,16 @@ closeButtons.forEach((button) => {
   // устанавливаем обработчик закрытия на крестик
   button.addEventListener('click', () => closePopup(popup));
 });
+
+
+/*-----Переменные для добавления новых карточке-----*/
+const imagePopup = document.querySelector('.popup-image');
+
+const cardImage = imagePopup.querySelector('.popup-image__photo'),
+      cardCaption = imagePopup.querySelector('.popup-image__figcaption');
+
+
+
 
 function closePopupOnOverlay(e) {
   if (e.target == e.currentTarget) {
