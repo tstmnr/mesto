@@ -35,3 +35,11 @@ export const formSelectors = {
 }
 
 export const cardListSelector = '.places__items';
+
+export const imagePopupSelector = '.popup-image';
+
+export const popupElementAddCardSelector = '.popup-add';
+
+export const popupElementEditProfileSelector = '.popup-edit';
+
+

@@ -1,4 +1,4 @@
-export class Card {
+export default class Card {
   static selectors = {
     cardElement:'.card',
     cardTitle: '.card__title',
@@ -31,11 +31,11 @@ export class Card {
       this._handleCardClick(this._name, this._link)
     });
 
-    this._likeButton.addEventListener('click', (e) => {
+    this._likeButton.addEventListener('click', () => {
       this._toggleLike();
     });
 
-    this._deleteButton.addEventListener('click', (e) => {
+    this._deleteButton.addEventListener('click', () => {
       this._removeCard();
     });
   }
