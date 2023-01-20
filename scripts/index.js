@@ -5,7 +5,7 @@ import FormValidator from './FormValidator.js';
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
 
-// Включение валидации
+/*-----ВКЛЮЧЕНИЕ ВАЛИДАЦИИ ФОРМ-----*/
 const formValidators = {}
 
 const enableValidation = (formSelectors) => {
@@ -20,11 +20,9 @@ const enableValidation = (formSelectors) => {
 
 enableValidation(formSelectors);
 
-
+/*-----ДОБАВЛЕНИЕ КАРТОЧЕК И ДОБАВЛЕНИЕ ПОПАПА ИЗОБРАЖЕНИЯ КАРТОЧКИ-----*/
 const imagePopup = new PopupWithImage(imagePopupSelector);
-const addCardPopup = new PopupWithForm(popupElementAddCardSelector, submitFormAddCard);
 
-/*ДОБАВЛЕНИЕ КАРТОЧЕК с сервера*/
 const createCard = function (name, link) {
   const cardElement = new Card(name, link, '#template-card', handleCardClick).generateCard();
   return cardElement;
@@ -41,24 +39,24 @@ const cardList = new Section({
   }
 }, cardListSelector);
 
-/*-----Создание места и добавление в начало списка-----*/
 const renderCard = function (name, link) {
   cardList.addItem(createCard(name, link));
 }
 
 cardList.renderItems(); //вызов добавления карточек с сервера
 
-
+/*-----ФОРМА ДОБАВЛЕНИЯ КАРТИНКИ-----*/
 const buttonElementAddCard = document.querySelector('.profile__add-button');
 
-/*-----Функция отправки формы добавления новых карточек-----*/
-function submitFormAddCard(e, data) {
+const submitFormAddCard = (e, data) => {
   e.preventDefault();
   renderCard(data["place-name"], data["place-link"]);
 }
 
-/*-----Обработчики событий для добавления места-----*/
+const addCardPopup = new PopupWithForm(popupElementAddCardSelector, submitFormAddCard);
+
 buttonElementAddCard.addEventListener('click', () => {
+  addCardPopup.setEventListeners();
   addCardPopup.open();
 });
 
