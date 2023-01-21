@@ -34,6 +34,10 @@ export const formSelectors = {
   errorClass: 'form__error_visible'
 }
 
+export const userNameSelector = '.profile__name'
+
+export const userDescriptionSelector = '.profile__about'
+
 export const cardListSelector = '.places__items';
 
 export const imagePopupSelector = '.popup-image';

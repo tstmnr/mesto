@@ -1,9 +1,21 @@
 import Section from './Section.js'
-import { initialCards, formSelectors, cardListSelector, imagePopupSelector, popupElementEditProfileSelector, popupElementAddCardSelector } from './data.js';
+import {
+  initialCards,
+  formSelectors,
+  userNameSelector,
+  userDescriptionSelector,
+  cardListSelector,
+  imagePopupSelector,
+  popupElementEditProfileSelector,
+  popupElementAddCardSelector
+} from './data.js';
+import UserInfo from './UserInfo.js';
 import Card from './Сard.js';
 import FormValidator from './FormValidator.js';
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
+
+const userInfo = new UserInfo(userNameSelector, userDescriptionSelector);
 
 /*-----ДОБАВЛЕНИЕ КАРТОЧЕК И ДОБАВЛЕНИЕ ПОПАПА ИЗОБРАЖЕНИЯ КАРТОЧКИ-----*/
 const imagePopup = new PopupWithImage(imagePopupSelector);
@@ -33,6 +45,7 @@ cardList.renderItems(); //вызов добавления карточек с с
 
 /*-----ФОРМА ДОБАВЛЕНИЯ КАРТИНКИ-----*/
 const buttonElementAddCard = document.querySelector('.profile__add-button');
+const formElementAddCard = document.forms['new-card'];
 
 const submitFormAddCard = (e, data) => {
   e.preventDefault();
@@ -43,6 +56,7 @@ const addCardPopup = new PopupWithForm(popupElementAddCardSelector, submitFormAd
 addCardPopup.setEventListeners();
 
 buttonElementAddCard.addEventListener('click', () => {
+  formElementAddCard.reset();
   addCardPopup.open();
 });
 
@@ -50,23 +64,22 @@ buttonElementAddCard.addEventListener('click', () => {
 const buttonElementEditProfile = document.querySelector('.profile__edit-button');
 const formElementEditProfile = document.forms['user-info'];
 const fieldInputUserName = formElementEditProfile.querySelector('[name="name"]');
-const fieldInputAbout = formElementEditProfile.querySelector('[name="about"]');
-const userName = document.querySelector('.profile__name');
-const userAbout = document.querySelector('.profile__about');
+const fieldInputDescription = formElementEditProfile.querySelector('[name="about"]');
 
 const submitFormEditProfile = (e, data) => {
   e.preventDefault();
-  userName.textContent = data["name"];
-  userAbout.textContent = data["about"];
+  userInfo.setUserInfo(data["name"], data["about"])
 }
 
 const editProfilePopup = new PopupWithForm(popupElementEditProfileSelector, submitFormEditProfile);
 editProfilePopup.setEventListeners();
 
 buttonElementEditProfile.addEventListener('click', () => {
+  formElementEditProfile.reset();
+  const { userName, userDescription } = userInfo.getUserInfo()
+  fieldInputUserName.value = userName;
+  fieldInputDescription.value = userDescription;
   editProfilePopup.open();
-  fieldInputUserName.value = userName.textContent;
-  fieldInputAbout.value = userAbout.textContent;
 });
 
 /*-----ВКЛЮЧЕНИЕ ВАЛИДАЦИИ ФОРМ-----*/
