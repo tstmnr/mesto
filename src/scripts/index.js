@@ -1,3 +1,4 @@
+import '../pages/index.css';
 import Section from './Section.js'
 import {
   initialCards,
