@@ -12,10 +12,12 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add(Popup.selectors.popupOpened);
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove(Popup.selectors.popupOpened);
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   _handleEscClose = (e) => {
@@ -36,7 +38,5 @@ export default class Popup {
     });
 
     this._popupElement.addEventListener('mousedown', this._closePopupOnOverlay);
-
-    document.addEventListener('keydown', this._handleEscClose);
   }
 }
