@@ -11,9 +11,9 @@ export default class Card {
     buttonCloseImagePopup: '.popup__close_type_image',
   }
 
-  constructor(name, link, templateSelector, handleCardClick) {
-    this._name = name;
-    this._link = link;
+  constructor(data, templateSelector, { handleCardClick }) {
+    this._name = data.name;
+    this._link = data.link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
@@ -28,7 +28,10 @@ export default class Card {
 
   _setEventListeners() {
     this._image.addEventListener('click', () => {
-      this._handleCardClick(this._name, this._link)
+      this._handleCardClick({
+        name: this._name,
+        link: this._link,
+      })
     });
 
     this._likeButton.addEventListener('click', () => {
