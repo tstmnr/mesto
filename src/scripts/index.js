@@ -28,6 +28,7 @@ const fieldInputUserName = formElementEditProfile.querySelector('[name="name"]')
 const fieldInputDescription = formElementEditProfile.querySelector('[name="about"]');
 const formElementEditAvatar = document.forms['avatar'];
 
+//создаем API
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
   headers: {
@@ -36,27 +37,30 @@ const api = new Api({
   },
 });
 
+//создаем будущую разметку для добавления карточек
 const cardList = new Section({
   renderer: (data) => {
     cardList.addItem(createCard(data), 'append');
   }
 }, cardListSelector);
 
+//выгружаем карточки с сервера на страницу
 api.getInitialCards()
   .then((data) => {
-    cardList.renderItems(data); //вызов добавления карточек с сервера
+    cardList.renderItems(data);
   })
   .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
+    console.log(err);
   });
 
+//выгружаем данные пользователя с сервера и отображаем на странице
 api.getUserInfo()
   .then((data) => {
     userInfo.setUserInfo(data);
     userInfo.setAvatar(data.avatar);
   })
   .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
+    console.log(err);
   });
 
 
@@ -74,6 +78,7 @@ function renderCard(data) {
   cardList.addItem(createCard(data));
 }
 
+//функция подтверждения формы добавления карточки
 const submitFormAddCard = (e, data) => {
   e.preventDefault();
   debugger;
@@ -82,10 +87,11 @@ const submitFormAddCard = (e, data) => {
       renderCard(data);
     })
     .catch((err) => {
-      console.log(err); // выведем ошибку в консоль
+      console.log(err);
     });
 }
 
+//функция подтверждения формы редактирования профиля
 const submitFormEditProfile = (e, data) => {
   e.preventDefault();
   api.patchUserInfo(data)
@@ -98,6 +104,7 @@ const submitFormEditProfile = (e, data) => {
   });
 }
 
+//функция подтверждения формы обновления аватара
 const submitFormEditAvatar = (e, avatarUrl) => {
   e.preventDefault();
   api.patchAvatar(avatarUrl)
@@ -123,11 +130,13 @@ avatarEditPopup.setEventListeners();
 
 const userInfo = new UserInfo(userNameSelector, userDescriptionSelector, userAvatarSelector);
 
+//слушатель на кнопку добавления карточки
 buttonElementAddCard.addEventListener('click', () => {
   formElementAddCard.reset();
   addCardPopup.open();
 });
 
+//слушатель на кнопку редактирования профиля
 buttonElementEditProfile.addEventListener('click', () => {
   formElementEditProfile.reset();
   const { userName, userDescription } = userInfo.getUserInfo()
@@ -136,12 +145,13 @@ buttonElementEditProfile.addEventListener('click', () => {
   editProfilePopup.open();
 });
 
+//слушатель на кнопку изменения аватара (ПРИ ОБНОВЛЕНИИ АВАТАРА НА СТРАНИЦЕ ОТОБРАЖАЕТСЯ КАРТИНКА ТОЛЬКО ПОСЛЕ ПЕРЕЗАГРУЗКИ)
 buttonAvatarEdit.addEventListener('click', () => {
   formElementEditAvatar.reset();
   avatarEditPopup.open();
 })
 
-/*-----ВКЛЮЧЕНИЕ ВАЛИДАЦИИ ФОРМ-----*/
+//включение валидации всех форм
 const formValidators = {}
 
 const enableValidation = (formSelectors) => {
