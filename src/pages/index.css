@@ -36,6 +36,8 @@
 @import url("../blocks/card/__info/card__info.css");
 @import url("../blocks/card/__title/card__title.css");
 @import url("../blocks/card/__favourites/card__favourites.css");
+@import url("../blocks/card/__favourites-wrapper/card__favourites-wrapper.css");
+@import url("../blocks/card/__counter/card__counter.css");
 @import url("../blocks/card/__favourites/_active/card__favourities_active.css");
 @import url("../blocks/card/__delete/card__delete.css");
 /*FOOTER*/

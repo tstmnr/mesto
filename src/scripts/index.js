@@ -9,33 +9,24 @@ import {
   imagePopupSelector,
   popupElementEditProfileSelector,
   popupElementAddCardSelector,
-  avatarPopupSelector
-} from './data.js';
+  avatarPopupSelector,
+  popupConfirmationSelector,
+  buttonElementAddCard,
+  buttonAvatarEdit,
+  formElementAddCard,
+  buttonElementEditProfile,
+  formElementEditProfile,
+  fieldInputUserName,
+  fieldInputDescription,
+  formElementEditAvatar,
+} from './constants.js';
 import UserInfo from './UserInfo.js';
 import Card from './Сard.js';
 import FormValidator from './FormValidator.js';
 import PopupWithImage from './PopupWithImage.js'
 import PopupWithForm from './PopupWithForm.js'
-import Api from './Api.js'
-
-
-const buttonElementAddCard = document.querySelector('.profile__add-button');
-const buttonAvatarEdit = document.querySelector('.profile__avatar-edit-button');
-const formElementAddCard = document.forms['new-card'];
-const buttonElementEditProfile = document.querySelector('.profile__edit-button');
-const formElementEditProfile = document.forms['user-info'];
-const fieldInputUserName = formElementEditProfile.querySelector('[name="name"]');
-const fieldInputDescription = formElementEditProfile.querySelector('[name="about"]');
-const formElementEditAvatar = document.forms['avatar'];
-
-//создаем API
-const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
-  headers: {
-    authorization: '1031f3d3-8c3f-4c24-875b-e46b585a685d',
-    'Content-Type': 'application/json'
-  },
-});
+import api from './Api.js'
+import PopupWithConfirmation from './PopupWithConfirmation';
 
 //создаем будущую разметку для добавления карточек
 const cardList = new Section({
@@ -43,6 +34,56 @@ const cardList = new Section({
     cardList.addItem(createCard(data), 'append');
   }
 }, cardListSelector);
+
+let currentIdCard;
+
+const submitDeleteCard = (e) => {
+  e.preventDefault();
+  api.deleteCard(currentIdCard)
+        .then(() => {
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+}
+
+const popupWithConfirmation = new PopupWithConfirmation(popupConfirmationSelector, submitDeleteCard);
+popupWithConfirmation.setEventListeners();
+
+function createCard(data) {
+  const cardElement = new Card(data, '#template-card', {
+    handleCardClick: (data) => {
+      imagePopup.open(data);
+    },
+    handleCardDelete: (idCard) => {
+      currentIdCard = idCard;
+      popupWithConfirmation.open();
+    },
+    handleSetLikeCard: (idCard) => {
+      api.setLike(idCard)
+        .then((data) => {
+          cardElement.setLikeCount(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    handleDeleteLikeCard: (idCard) => {
+      api.deleteLike(idCard)
+        .then((data) => {
+          cardElement.setLikeCount(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  });
+  return cardElement.generateCard();
+}
+
+function renderCard(data) {
+  cardList.addItem(createCard(data));
+}
 
 //выгружаем карточки с сервера на страницу
 api.getInitialCards()
@@ -63,37 +104,29 @@ api.getUserInfo()
     console.log(err);
   });
 
-
-function createCard(data) {
-  const cardElement = new Card(data, '#template-card', {
-    handleCardClick: (data) => {
-      imagePopup.open(data);
-    },
-    //передать установку/удаление лайка
-  });
-  return cardElement.generateCard();
-}
-
-function renderCard(data) {
-  cardList.addItem(createCard(data));
-}
-
 //функция подтверждения формы добавления карточки
 const submitFormAddCard = (e, data) => {
   e.preventDefault();
-  debugger;
+  addCardPopup.setButtonText('Сохранение...');
   api.postCard(data)
     .then((data) => {
       renderCard(data);
+      console.log(data);
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+    .finally(() => {
+      setTimeout(() => {
+        addCardPopup.setButtonText('Сохранить');
+      }, 200);
+    })
 }
 
 //функция подтверждения формы редактирования профиля
 const submitFormEditProfile = (e, data) => {
   e.preventDefault();
+  editProfilePopup.setButtonText('Сохранение...');
   api.patchUserInfo(data)
   .then((data) => {
     console.log(data);
@@ -101,19 +134,30 @@ const submitFormEditProfile = (e, data) => {
   })
   .catch((err) => {
     console.log(err);
-  });
+  })
+  .finally(() => {
+    setTimeout(() => {
+      editProfilePopup.setButtonText('Сохранить');
+    }, 200);
+  })
 }
 
 //функция подтверждения формы обновления аватара
 const submitFormEditAvatar = (e, avatarUrl) => {
   e.preventDefault();
+  avatarEditPopup.setButtonText('Сохранение...');
   api.patchAvatar(avatarUrl)
-  .then((avatarUrl) => {
-    userInfo.setAvatar(avatarUrl['avatar-link'])
+  .then((user) => {
+    userInfo.setAvatar(user['avatar'])
   })
   .catch((err) => {
     console.log(err);
-  });
+  })
+  .finally(() => {
+    setTimeout(() => {
+      avatarEditPopup.setButtonText('Сохранить');
+    }, 200);
+  })
 }
 
 const editProfilePopup = new PopupWithForm(popupElementEditProfileSelector, submitFormEditProfile);

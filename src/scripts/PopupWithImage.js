@@ -1,7 +1,6 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithImage extends Popup {
-
   static selectors = {
     cardPhoto: '.popup-image__photo',
     cardCaption: '.popup-image__figcaption'

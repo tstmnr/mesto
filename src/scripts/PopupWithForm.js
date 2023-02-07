@@ -12,6 +12,7 @@ export default class PopupWithForm extends Popup {
     this._submitForm = submitForm;
     this._formElement = this._popupElement.querySelector(PopupWithForm.selectors.formElementSelector);
     this._inputList = this._formElement.querySelectorAll(PopupWithForm.selectors.inputListSelector);
+    this._button = this._formElement.querySelector('.form__button');
   }
 
   _getInputValues() {
@@ -31,5 +32,9 @@ export default class PopupWithForm extends Popup {
       this._submitForm(e, this._getInputValues());
       this.close();
     });
+  }
+
+  setButtonText(text) {
+    this._button.textContent = text;
   }
 }
