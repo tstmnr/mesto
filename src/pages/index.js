@@ -1,5 +1,5 @@
-import '../pages/index.css';
-import Section from './Section.js'
+import './index.css';
+import Section from '../scripts/Section.js'
 import {
   formSelectors,
   userNameSelector,
@@ -19,14 +19,14 @@ import {
   fieldInputUserName,
   fieldInputDescription,
   formElementEditAvatar,
-} from './constants.js';
-import UserInfo from './UserInfo.js';
-import Card from './Сard.js';
-import FormValidator from './FormValidator.js';
-import PopupWithImage from './PopupWithImage.js'
-import PopupWithForm from './PopupWithForm.js'
-import api from './Api.js'
-import PopupWithConfirmation from './PopupWithConfirmation';
+} from '../scripts/constants.js';
+import UserInfo from '../scripts/UserInfo.js';
+import Card from '../scripts/Сard.js';
+import FormValidator from '../scripts/FormValidator.js';
+import PopupWithImage from '../scripts/PopupWithImage.js'
+import PopupWithForm from '../scripts/PopupWithForm.js'
+import api from '../scripts/Api.js'
+import PopupWithConfirmation from '../scripts/PopupWithConfirmation';
 
 //создаем будущую разметку для добавления карточек
 const cardList = new Section({
@@ -35,29 +35,16 @@ const cardList = new Section({
   }
 }, cardListSelector);
 
-let currentIdCard;
-
-const submitDeleteCard = (e) => {
-  e.preventDefault();
-  api.deleteCard(currentIdCard)
-        .then(() => {
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-}
-
-const popupWithConfirmation = new PopupWithConfirmation(popupConfirmationSelector, submitDeleteCard);
-popupWithConfirmation.setEventListeners();
+let currentCard;
 
 function createCard(data) {
   const cardElement = new Card(data, '#template-card', {
     handleCardClick: (data) => {
       imagePopup.open(data);
     },
-    handleCardDelete: (idCard) => {
-      currentIdCard = idCard;
+    handleCardDelete: (card) => {
       popupWithConfirmation.open();
+      currentCard = card;
     },
     handleSetLikeCard: (idCard) => {
       api.setLike(idCard)
@@ -159,6 +146,21 @@ const submitFormEditAvatar = (e, avatarUrl) => {
     }, 200);
   })
 }
+
+
+const submitDeleteCard = (e) => {
+  e.preventDefault();
+  api.deleteCard(currentCard)
+        .then(() => {
+          currentCard.deleteCard();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+}
+
+const popupWithConfirmation = new PopupWithConfirmation(popupConfirmationSelector, submitDeleteCard);
+popupWithConfirmation.setEventListeners();
 
 const editProfilePopup = new PopupWithForm(popupElementEditProfileSelector, submitFormEditProfile);
 editProfilePopup.setEventListeners();

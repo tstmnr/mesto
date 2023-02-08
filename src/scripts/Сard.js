@@ -29,14 +29,14 @@ export default class Card {
     this._likeCounterElement.textContent = data.likes.length;
   }
 
-  _removeCard() {
-    this._handleCardDelete(this._id);
+  deleteCard() {
+    this._removeCard();
   }
 
   _checkOwner() {
     if (this._ownerId == '3f9831328dfbc5481a06889d') {
       this._deleteButton.addEventListener('click', () => {
-        this._removeCard();
+        this._handleCardDelete(this);
       });
     } else {
       this._deleteButton.style.display = 'none';
@@ -86,6 +86,10 @@ export default class Card {
     this._image.alt = `Фото ${this._name}`;
     this._likeCounterElement = this._element.querySelector(Card.selectors.likeCounterElement);
     this._likeCounterElement.textContent = this._likeCounterArray.length;
+    this._removeCard = () => {
+      this._element.remove();
+    };
+
     this._setEventListeners();
 
     return this._element;

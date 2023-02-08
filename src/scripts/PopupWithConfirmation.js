@@ -12,7 +12,7 @@ export default class PopupWithConfirmation extends Popup {
     this._button = this._formElement.querySelector('.form__button');
   }
 
-  open(idCard) {
+  open() {
     super.open();
   }
 
