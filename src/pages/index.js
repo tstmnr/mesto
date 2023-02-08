@@ -98,7 +98,6 @@ const submitFormAddCard = (e, data) => {
   api.postCard(data)
     .then((data) => {
       renderCard(data);
-      console.log(data);
     })
     .catch((err) => {
       console.log(err);
@@ -116,7 +115,6 @@ const submitFormEditProfile = (e, data) => {
   editProfilePopup.setButtonText('Сохранение...');
   api.patchUserInfo(data)
   .then((data) => {
-    console.log(data);
     userInfo.setUserInfo(data)
   })
   .catch((err) => {
