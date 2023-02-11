@@ -12,9 +12,10 @@ export default class Card {
     likeCounterElement: '.card__counter',
   }
 
-  constructor(data, templateSelector, { handleCardClick, handleCardDelete, handleSetLikeCard, handleDeleteLikeCard }) {
+  constructor(data, userId, templateSelector, { handleCardClick, handleCardDelete, handleSetLikeCard, handleDeleteLikeCard }) {
     this._name = data.name;
     this._link = data.link;
+    this._userId = userId;
     this._templateSelector = templateSelector;
     this._ownerId = data.owner._id;
     this._handleCardClick = handleCardClick;
@@ -27,6 +28,7 @@ export default class Card {
 
   setLikeCount = (data) => {
     this._likeCounterElement.textContent = data.likes.length;
+    this._likeButton.classList.toggle('card__favourities_active');
   }
 
   deleteCard() {
@@ -34,7 +36,7 @@ export default class Card {
   }
 
   _checkOwner() {
-    if (this._ownerId == '3f9831328dfbc5481a06889d') {
+    if (this._ownerId == this._userId) {
       this._deleteButton.addEventListener('click', () => {
         this._handleCardDelete(this);
       });
@@ -45,7 +47,7 @@ export default class Card {
 
   _checkLike() {
     this._likeCounterArray.forEach((like) => {
-      if (like._id === '3f9831328dfbc5481a06889d') {
+      if (like._id === this._userId) {
         this._likeButton.classList.add('card__favourities_active');
       }
     })
@@ -61,15 +63,11 @@ export default class Card {
 
     this._likeButton.addEventListener('click', () => {
       if (this._likeButton.classList.contains('card__favourities_active')) {
-        this._likeButton.classList.remove('card__favourities_active');
         this._handleDeleteLikeCard(this._id);
       } else {
-        this._likeButton.classList.add('card__favourities_active');
         this._handleSetLikeCard(this._id);
       }
     });
-    this._checkLike();
-    this._checkOwner();
   }
 
   _getTemplate() {
@@ -91,6 +89,9 @@ export default class Card {
     };
 
     this._setEventListeners();
+
+    this._checkLike();
+    this._checkOwner();
 
     return this._element;
   }

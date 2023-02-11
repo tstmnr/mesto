@@ -28,6 +28,8 @@ import PopupWithForm from '../scripts/PopupWithForm.js'
 import api from '../scripts/Api.js'
 import PopupWithConfirmation from '../scripts/PopupWithConfirmation';
 
+let userId;
+
 //создаем будущую разметку для добавления карточек
 const cardList = new Section({
   renderer: (data) => {
@@ -38,7 +40,7 @@ const cardList = new Section({
 let currentCard;
 
 function createCard(data) {
-  const cardElement = new Card(data, '#template-card', {
+  const cardElement = new Card(data, userId, '#template-card', {
     handleCardClick: (data) => {
       imagePopup.open(data);
     },
@@ -46,8 +48,8 @@ function createCard(data) {
       popupWithConfirmation.open();
       currentCard = card;
     },
-    handleSetLikeCard: (idCard) => {
-      api.setLike(idCard)
+    handleSetLikeCard: (cardId) => {
+      api.setLike(cardId)
         .then((data) => {
           cardElement.setLikeCount(data);
         })
@@ -55,8 +57,8 @@ function createCard(data) {
           console.log(err);
         });
     },
-    handleDeleteLikeCard: (idCard) => {
-      api.deleteLike(idCard)
+    handleDeleteLikeCard: (cardId) => {
+      api.deleteLike(cardId)
         .then((data) => {
           cardElement.setLikeCount(data);
         })
@@ -72,20 +74,21 @@ function renderCard(data) {
   cardList.addItem(createCard(data));
 }
 
-//выгружаем карточки с сервера на страницу
-api.getInitialCards()
-  .then((data) => {
-    cardList.renderItems(data);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 //выгружаем данные пользователя с сервера и отображаем на странице
 api.getUserInfo()
-  .then((data) => {
-    userInfo.setUserInfo(data);
-    userInfo.setAvatar(data.avatar);
+  .then((userData) => {
+    userInfo.setUserInfo(userData);
+    userInfo.setAvatar(userData.avatar);
+    userId = userData._id;
+    //выгружаем карточки с сервера на страницу, если данные пользователя выгружены успешно
+    api.getInitialCards()
+      .then((data) => {
+        cardList.renderItems(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   })
   .catch((err) => {
     console.log(err);

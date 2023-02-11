@@ -12,10 +12,6 @@ export default class PopupWithConfirmation extends Popup {
     this._button = this._formElement.querySelector('.form__button');
   }
 
-  open() {
-    super.open();
-  }
-
   setEventListeners() {
     super.setEventListeners();
 

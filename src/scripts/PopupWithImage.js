@@ -18,8 +18,4 @@ export default class PopupWithImage extends Popup {
     this._cardCaption.textContent = data.name;
     super.open();
   }
-
-  setEventListeners() {
-    super.setEventListeners();
-  }
 }
