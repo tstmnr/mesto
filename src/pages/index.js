@@ -74,7 +74,6 @@ function renderCard(data) {
   cardList.addItem(createCard(data));
 }
 
-
 //выгружаем данные пользователя с сервера и отображаем на странице
 api.getUserInfo()
   .then((userData) => {
@@ -101,6 +100,9 @@ const submitFormAddCard = (e, data) => {
   api.postCard(data)
     .then((data) => {
       renderCard(data);
+      console.log('Попап добавления карточки закрывается')
+      addCardPopup.close();
+      console.log('Попап добавления карточки закрыт')
     })
     .catch((err) => {
       console.log(err);
@@ -119,6 +121,9 @@ const submitFormEditProfile = (e, data) => {
   api.patchUserInfo(data)
   .then((data) => {
     userInfo.setUserInfo(data)
+    console.log('Попап редактирования профиля закрывается')
+    editProfilePopup.close();
+    console.log('Попап редактирования профиля закрыт')
   })
   .catch((err) => {
     console.log(err);
@@ -137,6 +142,9 @@ const submitFormEditAvatar = (e, avatarUrl) => {
   api.patchAvatar(avatarUrl)
   .then((user) => {
     userInfo.setAvatar(user['avatar'])
+    console.log('Попап редактирования аватара закрывается')
+    avatarEditPopup.close();
+    console.log('Попап редактирования аватара закрыт')
   })
   .catch((err) => {
     console.log(err);
@@ -154,6 +162,9 @@ const submitDeleteCard = (e) => {
   api.deleteCard(currentCard)
         .then(() => {
           currentCard.deleteCard();
+          console.log('Попап удаления карточки закрывается')
+          popupWithConfirmation.close();
+          console.log('Попап удаления карточки закрыт')
         })
         .catch((err) => {
           console.log(err);
